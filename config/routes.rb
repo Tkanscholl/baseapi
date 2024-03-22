@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :armies
   require 'sidekiq/web'
 
   scope :monitoring do
@@ -24,6 +25,17 @@ Rails.application.routes.draw do
         delete :logout
         get :me
         post :create
+      end
+      namespace :my_armies do
+        post :create
+        delete :destroy
+        get :list
+
+      end
+      namespace :armies do
+        post :create
+        delete :destroy
+        get :list             
       end
     end
   end
